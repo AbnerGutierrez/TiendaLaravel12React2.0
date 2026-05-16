@@ -23,6 +23,12 @@ export default function Welcome() {
                         ) : (
                             <>
                                 <Link
+                                    href={route('products')}
+                                    className="inline-block rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A]"
+                                >
+                                    Productos
+                                </Link>
+                                <Link
                                     href={route('login')}
                                     className="inline-block rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A]"
                                 >
@@ -44,10 +50,10 @@ export default function Welcome() {
                             <div className="mx-auto grid max-w-screen-xl px-4 py-8 lg:grid-cols-12 lg:gap-8 lg:py-16 xl:gap-0">
                                 <div className="mr-auto place-self-center lg:col-span-7">
                                     <h1 className="mb-4 max-w-2xl text-4xl leading-none font-extrabold tracking-tight md:text-5xl xl:text-6xl dark:text-white">
-                                        Bienvenido a lunadev.mx
+                                        Bienvenido a nombreTienda.com
                                     </h1>
                                     <p className="mb-6 max-w-2xl font-light text-gray-500 md:text-lg lg:mb-8 lg:text-xl dark:text-gray-400">
-                                        Esta página está desarrollada con las siguientes tecnologías: Laravel, React y SQLite.{' '}
+                                        Productos de la mejora caliddad y a precios accesibles.{' '}
                                     </p>
                                     <Link
                                         href={route('login')}
@@ -84,18 +90,17 @@ export default function Welcome() {
                             <div className="mx-auto max-w-screen-xl items-center gap-16 px-4 py-8 lg:grid lg:grid-cols-2 lg:px-6 lg:py-16">
                                 <div className="order-2 font-light text-gray-500 sm:text-lg dark:text-gray-400">
                                     <h2 className="mb-6 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-                                        Estamos navegando por internet
+                                        No busque mas
                                     </h2>
 
                                     <p className="mb-6">
-                                        Si estás viendo esta página web, significa que tu dispositivo logró conectarse a internet y establecer
-                                        comunicación con un servidor remoto que contiene toda la información necesaria para mostrar este contenido en
-                                        tu navegador.
+                                        Aquí encontrarás esos productos virales, curiosos y útiles que aparecen en redes sociales y que muchas veces
+                                        son difíciles de buscar o encontrar. 
                                     </p>
 
                                     <p className="mb-6">
-                                        Aunque normalmente esto ocurre en cuestión de milisegundos y parece algo simple, detrás de cada página web
-                                        existen múltiples procesos trabajando al mismo tiempo para que todo funcione correctamente.
+                                        Reunimos en un solo lugar los artículos más populares y llamativos del momento, para que puedas encontrarlos
+                                        de forma rápida, fácil y segura.
                                     </p>
                                 </div>
                                 <div className="order-1 mt-8 grid grid-cols-2 gap-4">

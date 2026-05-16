@@ -60,8 +60,4 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
-
-    Route::get('react_functions', function () {
-        return Inertia::render('auth/react-functions');
-    });
 });

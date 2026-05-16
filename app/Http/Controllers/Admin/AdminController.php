@@ -84,4 +84,14 @@ class AdminController extends Controller
             );
         }
     }
+
+    public function products()
+    {
+        return Inertia::render('admin/AdminProducts');
+    }
+
+    public function addProducts()
+    {
+        return Inertia::render('admin/AddProducts');
+    }
 }

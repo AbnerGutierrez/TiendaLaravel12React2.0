@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { Book, BookOpen, Folder, LayoutGrid, UserSquare } from 'lucide-react';
+import { Book, BookOpen, Folder, LayoutGrid, UserSquare, BoxIcon } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const footerNavItems: NavItem[] = [
@@ -36,17 +36,17 @@ export function AppSidebar() {
                       icon: LayoutGrid,
                   },
                   {
-                      title: 'Usuarios',
+                      title: 'Users',
                       url: route('admin.users', {}, false),
                       icon: UserSquare,
                   },
+                  {
+                      title: 'Products',
+                      url: route('admin.products', {}, false),
+                      icon: BoxIcon,
+                  },
               ]
             : []),
-        {
-            title: 'ReactFunctions',
-            url: '/react_functions',
-            icon: Book,
-        },
     ];
     return (
         <Sidebar collapsible="icon" variant="inset">

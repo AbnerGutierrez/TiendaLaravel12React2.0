@@ -8,10 +8,12 @@ Route::middleware(['auth', 'rol:admin'])->prefix('admin')->name('admin.')->group
     Route::controller(AdminController::class)->group(function () {
         Route::get('users', 'users')->name('users');
         Route::get('user/details/{idUser}', 'editUser')->name('userDetails');
-        Route::get('dashboard','dashboard')->name('dashboard');
+        Route::get('dashboard', 'dashboard')->name('dashboard');
+        Route::get('products', 'products')->name('products');
+        Route::get('products/create', 'addProducts')->name('products.add');
 
-        Route::put('uaser/editar/{idUser}','updateUser')->name('users.update');
+        Route::put('uaser/editar/{idUser}', 'updateUser')->name('users.update');
 
-        Route::delete('delete','guestDelete')->name('users.guest.delete');
+        Route::delete('delete', 'guestDelete')->name('users.guest.delete');
     });
 });
