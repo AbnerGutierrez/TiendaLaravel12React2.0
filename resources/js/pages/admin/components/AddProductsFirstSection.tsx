@@ -1,6 +1,31 @@
+import Selectors from '@/components/Selectors';
+
+const tipos = [
+    {
+        value: 1,
+        description: 'Ropa',
+    },
+    {
+        value: 2,
+        description: 'Electronicos',
+    },
+    {
+        value: 3,
+        description: 'Cocina',
+    },
+    {
+        value: 4,
+        description: 'Musica',
+    },
+];
+
 export default function AddProductsFirSection({}) {
     return (
         <div className="flex flex-col gap-2">
+            {/* Selector de tipo de producto */}
+            <div className="mb-3">
+                <Selectors name="categoria_producto" options={tipos} title="Categoria" />
+            </div>
             {/* Título */}
             <div className="flex flex-col gap-1.5">
                 <label htmlFor="title-id" className="text-sm font-medium text-gray-700 dark:text-gray-300">

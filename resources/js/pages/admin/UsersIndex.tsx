@@ -19,7 +19,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 export default function UsersIndex({ users }: Props) {
-    const handleDeleteGuests = (e: React.FormEvent) => {
+    const handleDeleteGuests = (e) => {
         e.preventDefault();
 
         // 1. Confirmación para evitar eliminaciones accidentales
@@ -41,17 +41,26 @@ export default function UsersIndex({ users }: Props) {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Users" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-                <div className="border-sidebar-border/70 dark:border-sidebar-border relative min-h-[100vh] flex-1 rounded-xl border p-2 md:min-h-min">
+                <div className="border-sidebar-border/70 dark:border-sidebar-border relative min-h-screen flex-1 rounded-xl border p-2 md:min-h-min">
                     <div className="bg-neutral-primary-soft rounded-base border-default relative overflow-x-auto p-2">
-                        <form onSubmit={handleDeleteGuests}>
-                            <button
-                                type="submit"
-                                className="mx-4 rounded bg-orange-500 px-2 py-1 font-bold text-white hover:cursor-pointer hover:bg-orange-700"
-                                title="Eliminar invitados"
+                        <div className='flex'>
+                            <form onSubmit={handleDeleteGuests}>
+                                <button
+                                    type="submit"
+                                    className="mx-4 rounded bg-orange-500 px-2 py-1 font-bold text-white hover:cursor-pointer hover:bg-orange-700"
+                                    title="Eliminar invitados"
+                                >
+                                    Eliminar invitados
+                                </button>
+                            </form>
+                            <Link
+                                href={route('admin.userShowCcreate')}
+                                className="mx-4 rounded bg-blue-500 px-2 py-1 font-bold text-white hover:cursor-pointer hover:bg-blue-700"
+                                title="Agrear usuario"
                             >
-                                Eliminar invitados
-                            </button>
-                        </form>
+                                Agreagr usuario
+                            </Link>
+                        </div>
                         <table className="text-body w-full text-left text-sm rtl:text-right">
                             <thead className="text-body bg-neutral-secondary-soft rounded-base border-default border-b text-center text-sm">
                                 <tr>

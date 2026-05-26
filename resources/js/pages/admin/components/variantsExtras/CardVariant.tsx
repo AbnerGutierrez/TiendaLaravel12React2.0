@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
 import { useState } from 'react';
-import ItemType from './ItemType';
+import SelectedVariant from './SelectedVariant';
 import { VARIANT_TYPES } from './variantConfig';
 import VariantFieldInput from './VariantField';
 
@@ -12,20 +12,38 @@ interface CardVariantProps {
     onRemove: () => void;
 }
 
+interface selectedVariant {
+    id: number;
+    type: string;
+    description: Record<string, string>;
+}
+
 export default function CardVariant({ selectedType, usedTypes, onTypeChange, onRemove }: CardVariantProps) {
-    console.log(selectedType);
-    console.log(usedTypes);
+    const [selectedVariant, setSelectedVariant] = useState<selectedVariant[]>([]);
 
     const [fieldValues, setFieldValues] = useState<Record<string, string>>({});
     const config = VARIANT_TYPES[selectedType] ?? null;
-
+    // console.log(selectedType);
+    // console.log(usedTypes);
+    // console.log(onTypeChange);
+    // console.log(onRemove);
+    // console.log(config);
     const handleTypeChange = (type: string) => {
         onTypeChange(type);
         setFieldValues({});
+        setSelectedVariant([]);
     };
 
     const handleFieldChange = (key: string, value: string) => {
         setFieldValues((prev) => ({ ...prev, [key]: value }));
+    };
+
+    const handleSelectVariant = () => {
+        setSelectedVariant((prev) => [...prev, { id: Date.now(), type: selectedType, description: fieldValues }]);
+    };
+
+    const handleRemoveSelectedVariant = (id: number) => {
+        setSelectedVariant((prev) => prev.filter((v) => v.id != id));
     };
 
     return (
@@ -48,42 +66,46 @@ export default function CardVariant({ selectedType, usedTypes, onTypeChange, onR
                             Choose a variant type...
                         </option>
                         {Object.entries(VARIANT_TYPES).map(([key, val]) => (
-                            <option
-                                key={key}
-                                value={key}
-                                // Lo deshabilita si ya está en uso, pero no si es el que tiene esta card
-                                disabled={usedTypes.includes(key) && key !== selectedType}
-                            >
+                            <option key={key} value={key} disabled={usedTypes.includes(key) && key !== selectedType}>
                                 {val.label} {usedTypes.includes(key) && key !== selectedType ? '(already added)' : ''}
                             </option>
                         ))}
                     </select>
                 </div>
 
-                {/* Campos dinámicos */}
                 {config && (
-                    <div className="md:flex md:gap-2">
-                        {config.fields.map((field) => (
-                            <VariantFieldInput
-                                key={field.key}
-                                fieldKey={field.key}
-                                label={field.label}
-                                type={field.type}
-                                placeholder={field.placeholder}
-                                options={field.options}
-                                value={fieldValues[field.key] ?? ''}
-                                onChange={handleFieldChange}
-                            />
-                        ))}
-                    </div>
-                )}
-                {config && (
-                    <Button type="button" className="my-4 hover:cursor-pointer">
-                        Add
-                    </Button>
+                    <>
+                        <div className="md:flex md:gap-2">
+                            {config.fields.map((field) => (
+                                <VariantFieldInput
+                                    key={field.key}
+                                    fieldKey={field.key}
+                                    label={field.label}
+                                    type={field.type}
+                                    placeholder={field.placeholder}
+                                    options={field.options}
+                                    value={fieldValues[field.key] ?? ''}
+                                    onChange={handleFieldChange}
+                                />
+                            ))}
+                        </div>
+                        <Button type="button" className="my-4 hover:cursor-pointer" onClick={handleSelectVariant}>
+                            Add
+                        </Button>
+                    </>
                 )}
             </div>
-            <ItemType />
+
+            <div className="flex flex-wrap gap-2">
+                {selectedVariant.map((variant) => (
+                    <SelectedVariant
+                        type={variant.type}
+                        key={variant.id}
+                        description={variant.description}
+                        onRemove={() => handleRemoveSelectedVariant(variant.id)}
+                    />
+                ))}
+            </div>
         </div>
     );
 }

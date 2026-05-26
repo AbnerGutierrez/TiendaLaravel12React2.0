@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\cat_roles;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -27,6 +28,19 @@ class AdminController extends Controller
         $usuarios = User::get();
         return Inertia::render('admin/UsersIndex', ['users' => $usuarios]);
     }
+
+    public function userShowCcreate()
+    {
+        $roles = cat_roles::get();
+        // dd($roles);
+        return Inertia::render('admin/users/CreateUser', ['roles' => $roles]);
+    }
+
+    public function userCreate(Request $request)
+    {
+      dd('Guardando');
+    }
+
 
     public function editUser($idUser)
     {

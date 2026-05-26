@@ -19,11 +19,10 @@ export default function AddProduct() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Add Product" />
-            <div className="flex h-full flex-1 flex-col gap-4 p-4 md:p-6 w-full md:w-[75%] mx-auto">
+            <div className="mx-auto flex h-full w-full flex-1 flex-col gap-4 p-4 md:w-[75%] md:p-6">
                 <div className="border-sidebar-border/70 dark:border-sidebar-border relative flex-1 rounded-xl border">
                     <div className="p-6">
                         <h1 className="mb-6 text-xl font-semibold text-gray-900 dark:text-gray-100">Add New Product</h1>
-
                         <form className="space-y-6">
                             {/* Title, description, price and stock */}
                             <AddProductsFirSection />
