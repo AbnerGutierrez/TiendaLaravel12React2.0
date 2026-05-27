@@ -42,7 +42,7 @@ export function AppSidebar() {
                   },
                   {
                       title: 'Products',
-                      url: route('admin.products', {}, false),
+                      url: route('admin.product.products', {}, false),
                       icon: BoxIcon,
                   },
               ]

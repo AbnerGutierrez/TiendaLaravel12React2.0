@@ -1,13 +1,12 @@
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/react';
+import { Head, useForm } from '@inertiajs/react';
 import AddProductsFirSection from './components/AddProductsFirstSection';
-import VariantsProducts from './components/VariantsProducts';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Products admin',
-        href: route('admin.products'),
+        href: route('admin.product.products'),
     },
     {
         title: 'Add products',
@@ -16,18 +15,31 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 export default function AddProduct() {
+    const { data, setData, post } = useForm({
+        categoria_producto: '',
+        title: '',
+        description: '',
+        price: '',
+        stock: '',
+        caracteristicas: [],
+    });
+
+    function submit(e) {
+        e.preventDefault();
+        post(route('admin.product.store'));
+    }
+
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Add Product" />
-            <div className="mx-auto flex h-full w-full flex-1 flex-col gap-4 p-4 md:w-[75%] md:p-6">
+            <div className="mx-auto flex h-full w-full flex-1 flex-col gap-4 p-4 md:p-6 xl:w-[80%]">
                 <div className="border-sidebar-border/70 dark:border-sidebar-border relative flex-1 rounded-xl border">
                     <div className="p-6">
                         <h1 className="mb-6 text-xl font-semibold text-gray-900 dark:text-gray-100">Add New Product</h1>
-                        <form className="space-y-6">
+                        <form onSubmit={submit} className="space-y-6">
                             {/* Title, description, price and stock */}
-                            <AddProductsFirSection />
+                            <AddProductsFirSection data={data} setData={setData} />
                             {/* Variants */}
-                            <VariantsProducts />
                             {/* Botones */}
                             <div className="flex items-center justify-end gap-3 border-t border-gray-200 pt-4 dark:border-gray-700">
                                 <button

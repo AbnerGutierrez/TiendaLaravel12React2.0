@@ -8,14 +8,12 @@ interface Props {
 }
 
 export default function SelectedVariant({ onRemove, type, description }: Props) {
-    // console.log(onRemove);
-    // console.log(type);
-    // console.log(description);
     const variant = variantRegistry[type as keyof typeof variantRegistry];
+
     const VariantComponent = variant?.component;
 
     return (
-        <div className="group relative flex aspect-square w-14 flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-linear-to-br from-[#172338] via-[#1b2a44] to-[#101826] p-2 shadow-md transition-all duration-300 hover:border-cyan-400/30">
+        <div className="group relative flex aspect-square w-14 flex-col items-center justify-center overflow-hidden rounded-2xl border border-black/10 bg-linear-to-br from-white to-gray-100 p-2 shadow-md transition-all duration-300 hover:border-cyan-500/30 hover:shadow-lg dark:border-white/10 dark:from-[#172338] dark:via-[#1b2a44] dark:to-[#101826] dark:hover:border-cyan-400/30">
             {/* Glow */}
             <div className="absolute -top-6 -right-6 h-16 w-16 rounded-full bg-cyan-500/10 blur-2xl transition-all duration-500" />
 
@@ -23,18 +21,24 @@ export default function SelectedVariant({ onRemove, type, description }: Props) 
             <button
                 onClick={onRemove}
                 type="button"
-                className="absolute top-0.5 right-0.5 rounded-full text-gray-400 transition-all hover:bg-red-500/10 hover:text-red-400"
+                className="absolute top-0.5 right-0.5 rounded-full text-gray-500 transition-all duration-200 hover:bg-red-500/10 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400"
             >
                 <X size={12} />
             </button>
 
             {/* Dynamic Variant */}
             <div className="flex h-8 w-8 items-center justify-center">
-                {VariantComponent ? <VariantComponent description={description} /> : <span className="text-[10px] text-white">?</span>}
+                {VariantComponent ? (
+                    <VariantComponent description={description} />
+                ) : (
+                    <span className="text-[10px] text-gray-700 dark:text-white">?</span>
+                )}
             </div>
 
             {/* Label */}
-            <p className="mt-1 text-[8px] text-gray-400 capitalize">{variant?.label || type}</p>
+            {/* <p className="mt-1 text-[8px] capitalize text-gray-500 dark:text-gray-400">
+                {variant?.label || type}
+            </p> */}
         </div>
     );
 }

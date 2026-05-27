@@ -18,7 +18,7 @@ export default function AdminProducts() {
                 <div className="border-sidebar-border/70 dark:border-sidebar-border relative min-h-screen flex-1 rounded-xl border p-2 md:min-h-min">
                     <div className="bg-neutral-primary-soft rounded-base border-default relative overflow-x-auto p-2">
                         <Link
-                            href={route('admin.products.add')}
+                            href={route('admin.product.products.add')}
                             className="mx-4 rounded bg-blue-500 px-2 py-1 font-bold text-white hover:cursor-pointer hover:bg-blue-700"
                             title="Eliminar invitados"
                         >
